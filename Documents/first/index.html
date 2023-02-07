@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,21 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@200;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <title>Bienvenidxs</title>
+  <title>Hello! Soy Sofi | La Home | Quien Soy? | Creaciones | Miscellaneous | Con-tacto</title>
 </head>
-
 <body>
-  <?php 
-	$nombre = $_POST['nombre'];
-	$email = $_POST['email'];
-	$asunto = 'Formulario Rellenado';
-	$mensaje = "Nombre: ".$nombre."<br> Email: $email<br> Mensaje:".$_POST['mensaje'];
-
-
-	if(mail('tuEmail', $asunto, $mensaje)){
-		echo "Correo enviado";
-	}
- ?>
   <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary ">
       <div class="container-fluid">
@@ -41,7 +28,7 @@
               <a class="nav-link active" aria-current="page" href="#">La Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Quien soy</a>
+              <a class="nav-link" href="#">Quien soy?</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Creaciones</a>
@@ -50,14 +37,14 @@
               <a class="nav-link" href="#">Miscellaneous</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Contacto</a>
+              <a class="nav-link" href="#">Con-tacto</a>
             </li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
-  <marquee style="background:black; color:white;text-transform: uppercase;font-size: 40px;">CREER ES CREAR * CREER ES
+  <marquee style="background:rgb(36, 36, 36); color:white;text-transform: uppercase;font-size: 40px;">CREER ES CREAR * CREER ES
     CREAR * CREER ES CREAR * </marquee>
   <div class="px-4 py-5 my-5 text-center">
     <h1 class="display-5 fw-bold">
@@ -68,31 +55,29 @@
     <div class="col-lg-6 mx-auto">
       <p class="lead mb-4">
         <font style="vertical-align: inherit;">
-          <font style="vertical-align: inherit;">Considero el creer (en unx mismx y sus capacidades) como una dimensión fundamental del desarrollo de una actividad</font>
+          <font style="vertical-align: inherit;">Ese es mi mantra. Considero el creer, en mí misma y en mis capacidades, como una dimensión fundamental para el desarrollo de una actividad tanto personal como laboral.</font>
         </font>
       </p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"> <button type="button"
           class="btn btn-primary btn-lg px-4 gap-3">
           <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Get to know me</font>
+            <font style="vertical-align: inherit;">Conoceme</font>
           </font>
         </button> <button type="button" class="btn btn-outline-secondary btn-lg px-4">
           <font style="vertical-align: inherit;">
-            <font style="vertical-align: inherit;">Creaciones</font>
+            <font style="vertical-align: inherit;">ver creaciones</font>
           </font>
         </button>
       </div>
     </div>
   </div>
-  <section>
-    <div class="container py-5">
+  <section id="who">
+    <div class="container py-5" >
       <div class="row m-3">
         <h3 class="mb-3">Quien soy? Who am I?</h3>
         <div class="col">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet ex arcu. In porta quis nibh sed
-            fringilla. Nunc accumsan hendrerit erat in hendrerit. Maecenas ullamcorper varius eleifend. Proin feugiat
-            condimentum ligula non auctor.</p>
+          <h3>Mi nombre es Ana Sofia Dominguez Montangie</h3>
+          <p>Me gustan muchas cosas, pero fundamentalmente lo armonico visualmente hablando. Me atraen los contrastes, crear piezas que impacten y llamen la atención cuando las veas. Me gustan los detalles, los colores fuertes y me gusta usar el negro como un pigmento para crear un ambiente de intensidad y profundidad (como la que todos llevamos, no?)</p>
         </div>
         <div class="col">
           <img class="img-fluid mx-25" src="mailchimp-0qnRfgnZIsI-unsplash.jpg" />
@@ -102,18 +87,19 @@
       <div class="row m-3">
         <div class="col">
           <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet ex arcu. In porta quis nibh sed
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet ex arcu.
+            In porta quis nibh sed
             fringilla.</p>
         </div>
       </div>
-
     </div>
   </section>
-  <section>
+  <section >
     <div class="container">
       <div class="row m-3">
         <div class="col">
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet ex arcu. In porta quis nibh sed
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sit amet ex arcu. 
+            In porta quis nibh sed
             fringilla..</p>
         </div>
       </div>
@@ -187,7 +173,6 @@
             <div class="card-img-overlay">
               <h5 class="card-title">Card title</h5>
               <p class="card-text">This is a wider card.</p>
-
             </div>
           </div>
         </div>
@@ -204,48 +189,31 @@
             </div>
           </div>
         </div>
-        <div class="col">
-          <h4>I like art</h4>
-          <div class="card bg-dark text-white">
-            <img src="mailchimp-0qnRfgnZIsI-unsplash.jpg" class="card-img" alt="...">
-            <div class="card-img-overlay">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional
-                content. This content is a little bit longer.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
   </section>
-  <marquee style="background:rgb(255, 255, 255); color:rgb(0, 0, 0);text-transform: uppercase;font-size: 18px">ESO ES
-    TODO AMIGXS * ESO ES TODO AMIGXS * ESO ES TODO AMIGXS * </marquee>
-  <section class="py-5">
+  <marquee style="background:rgb(43, 43, 43); color:rgb(255, 255, 255);text-transform: uppercase;font-size: 18px; height:28px">THAT'S ALL FOLKS * </marquee>
+  <section class="py-5" id="contact">
     <div class="container">
       <div class="row">
         <div class="col">
           <h4>Con-tacto</h4>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium iusto vero, iste recusandae nemo
-            dolor laudantium nostrum exercitationem aspernatur ex, laborum repellendus praesentium facilis architecto
-            qui labore cumque? Autem, numquam?0s
+          <p>Hay mucho por crear y descubrir. ¿Te interesa trabajar conmigo? ¡Hablemos!
           </p>
+          <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"> <i class="fa-solid fa-envelope"></i></a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"><i class="fa-brands fa-linkedin"></i></a></li>
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"> <i class="fa-brands fa-codepen"></i></a></li>
+          </ul>
         </div>
       </div>
   </section>
-
   <footer class="py-5">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"><i class="fa-brands fa-youtube"></i></a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"><i class="fa-brands fa-twitter"></i></a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"><i class="fa-brands fa-facebook"></i></a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"> <i class="fa-brands fa-instagram"></i></a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-muted"> <i class="fa-brands fa-whatsapp"></i></a></li>
-    </ul>
     <p class="text-center text-muted">© 2023 Sofia Dominguez</p>
   </footer>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
 </body>
-
 </html>
