@@ -1,0 +1,219 @@
+stages:          
+  - sandbox
+  - desa
+  - prod
+
+01-Seguridad-S:       
+  stage: sandbox
+  tags: 
+    - sandbox    
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan gitlab.dilfer.com.ar >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - ssh git@gitlab.dilfer.com.ar
+  environment:
+    name: sandbox    
+  only:
+    - sandbox
+
+02-Install-S:
+  stage: sandbox
+  tags: 
+    - sandbox    
+  script:
+    - echo $CI_PROJECT_PATH
+    - echo "$SRV_PROJECT_PATH"
+    - |
+      [ -d "$SRV_PROJECT_PATH" ] ||  git clone git@gitlab.dilfer.com.ar:$CI_PROJECT_PATH $SRV_PROJECT_PATH
+    - sudo chmod 777 -R $SRV_PROJECT_PATH
+    - cd $SRV_PROJECT_PATH
+    - git add .
+    - git stash
+  dependencies:
+    - 01-Seguridad-S        
+  environment:
+    name: sandbox    
+  only:
+    - sandbox
+
+03-Build-Container-S:      
+  stage: sandbox   
+  tags: 
+    - sandbox    
+  script:
+    - cd $SRV_PROJECT_PATH
+    - git checkout $CI_COMMIT_BRANCH
+    - git pull origin $CI_COMMIT_BRANCH 
+    - echo "$DOTENV" >  .env
+    - docker-compose build -no-cache   
+  dependencies:
+    - 02-Install-S
+  environment:
+    name: sandbox
+  only:
+    - sandbox
+
+04-Run-Container-S:      
+  stage: sandbox  
+  tags: 
+    - sandbox  
+  script:
+    - cd $SRV_PROJECT_PATH
+    - docker-compose stop    
+    - docker-compose up -d    
+  dependencies:
+    - 03-Build-Container-S    
+  environment:
+    name: sandbox
+  only:
+    - sandbox
+
+01-Seguridad-D:       
+  stage: desa
+  tags: 
+    - desa    
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan gitlab.dilfer.com.ar >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - ssh git@gitlab.dilfer.com.ar
+  environment:
+    name: desa    
+  only:
+    - desa
+
+02-Install-D:
+  stage: desa
+  tags: 
+    - desa    
+  script:
+    - echo $CI_PROJECT_PATH
+    - echo "$SRV_PROJECT_PATH"
+    - |
+      [ -d "$SRV_PROJECT_PATH" ] ||  git clone --branch $CI_COMMIT_BRANCH git@gitlab.dilfer.com.ar:$CI_PROJECT_PATH $SRV_PROJECT_PATH
+    - sudo chmod 777 -R $SRV_PROJECT_PATH
+    - git checkout $CI_COMMIT_BRANCH
+    - git add .
+    - git stash
+  dependencies:
+    - 01-Seguridad-D        
+  environment:
+    name: desa    
+  only:
+    - desa
+
+03-Build-Container-D:      
+  stage: desa   
+  tags: 
+    - desa    
+  script:
+    - cd $SRV_PROJECT_PATH
+    - git checkout $CI_COMMIT_BRANCH
+    - git add .
+    - git stash
+    - git pull origin $CI_COMMIT_BRANCH 
+    - echo "$DOTENV_TEST" >  .env
+    - echo "APP_RELEASE='$CI_COMMIT_TIMESTAMP'\n" >> .env
+    - echo "APP_ENTORNO='$CI_ENVIRONMENT_NAME'\n" >> .env
+    - docker-compose build    
+  dependencies:
+    - 02-Install-D
+  environment:
+    name: desa
+  only:
+    - desa
+
+04-Run-Container-D:      
+  stage: desa  
+  tags: 
+    - desa  
+  script:
+    - cd $SRV_PROJECT_PATH
+    - docker-compose stop    
+    - docker-compose up -d    
+  dependencies:
+    - 03-Build-Container-D    
+  environment:
+    name: desa
+  only:
+    - desa    
+
+01-Seguridad-P:       
+  stage: prod
+  tags: 
+    - prod    
+  script:
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan gitlab.dilfer.com.ar >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+    - ssh git@gitlab.dilfer.com.ar
+  environment:
+    name: prod    
+  only:
+    - main
+
+02-Install-P:
+  stage: prod
+  tags: 
+    - prod    
+  script:
+    - echo $CI_PROJECT_PATH
+    - echo "$SRV_PROJECT_PATH"
+    - |
+      [ -d "$SRV_PROJECT_PATH" ] ||  git clone --branch $CI_COMMIT_BRANCH git@gitlab.dilfer.com.ar:$CI_PROJECT_PATH $SRV_PROJECT_PATH
+    - sudo chmod 777 -R $SRV_PROJECT_PATH
+    - git checkout $CI_COMMIT_BRANCH
+    - git add .
+    - git stash
+  dependencies:
+    - 01-Seguridad-P        
+  environment:
+    name: prod    
+  only:
+    - main
+
+03-Build-Container-P:      
+  stage: prod   
+  tags: 
+    - prod    
+  script:
+    - cd $SRV_PROJECT_PATH
+    - git checkout $CI_COMMIT_BRANCH
+    - git add .
+    - git stash
+    - git pull origin $CI_COMMIT_BRANCH 
+    - echo "$DOTENV_PROD" >  .env
+    - echo "APP_RELEASE='$CI_COMMIT_TIMESTAMP'\n" >> .env
+    - echo "APP_ENTORNO='$CI_ENVIRONMENT_NAME'\n" >> .env
+    - docker-compose build    
+  dependencies:
+    - 02-Install-P
+  environment:
+    name: prod
+  only:
+    - main
+
+04-Run-Container-P:      
+  stage: prod  
+  tags: 
+    - prod  
+  script:
+    - cd $SRV_PROJECT_PATH
+    - docker-compose stop    
+    - docker-compose up -d    
+  dependencies:
+    - 03-Build-Container-P    
+  environment:
+    name: prod
+  only:
+    - main    

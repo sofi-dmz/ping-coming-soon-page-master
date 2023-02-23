@@ -1,0 +1,76 @@
+/* 
+- em: tamaño de letra de elemento padre, en el caso de propiedades tipograficas como font-size y tamañao de la fuente del propio elemento en el caso de otras propiedades como width.
+- rem: tamaño de la letra del elemento raíz
+
+
+*/
+body {
+    margin: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+
+nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 1em;
+    flex-wrap:wrap;
+}
+
+
+ul {
+   text-align: center;
+}
+
+li {
+    display: inline;
+    list-style: none;
+    color: white;
+    border-bottom:  1px solid black;
+}
+
+a {
+    text-decoration: none;
+    color: black; 
+    font-family: 'Gayathri', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Gayathri', sans-serif;
+    font-weight: 700;
+}
+
+.container {
+    margin: 1em;
+    padding: 0.5em;
+    border: 0.3em;
+    height: auto;
+}
+
+.row {
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    max-width: 300px;
+    row-gap: 1em;
+}
+
+.col {
+    display: flex;
+    border: 1px solid white;
+}
+
+.card {
+    border: 1em;
+    padding: 1em;
+    background-color: aliceblue;
+    height: 100%;
+    width: 100%;
+}
+
+footer{
+    text-align: center;
+}
